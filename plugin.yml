@@ -1,0 +1,15 @@
+name: Coords4PMMP
+main: Coords4PMMP\Coords4PMMP
+author: AshleyH
+description: Show player coordinates
+version: 1.0.0
+api: 3.0.0
+commands:
+  coords:
+    description: Show your coordinates 
+    permission: coords4pmmp.cmd
+    usage: /coords
+permissions:
+  coords4pmmp.cmd:
+    default: true
+    description: Allows use of Coords4PMMP
