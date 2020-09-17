@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Coords4PMMP;
+namespace AshleyH\Coords4PMMP;
 
 use pocketmine\Player;
 use pocketmine\scheduler\Task;

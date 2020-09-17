@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Coords4PMMP;
+namespace AshleyH\Coords4PMMP;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
@@ -21,6 +21,8 @@ class Coords4PMMP extends PluginBase implements Listener{
 	private $precision = 1;
 
 	public function onEnable() : void{
+	$this->getLogger()->info("Coords4PMMP Has Been Enabled");
+	$this->getLogger()->info("Coords4PMMP was created and maintained by Ashley H, please report any bugs/issues to https://github.com/AshleyHunter01/Coords4PMMP/issues");
 		$this->refreshRate = (int) $this->getConfig()->get("refreshRate");
 		if($this->refreshRate < 1){
 			$this->getLogger()->warning("Refresh rate property in config.yml is less than 1. Resetting to 1");
@@ -48,6 +50,8 @@ class Coords4PMMP extends PluginBase implements Listener{
 	}
 
 	public function onDisable() : void{
+	$this->getLogger()->info("Coords4PMMP Has Been disabled");
+	$this->getLogger()->info("Coords4PMMP was created and maintained by Ashley H, please report any bugs to https://github.com/AshleyHunter01/Coords4PMMP/issues");
 		$this->tasks = [];
 	}
 
@@ -61,13 +65,14 @@ class Coords4PMMP extends PluginBase implements Listener{
 
 			if(!isset($this->tasks[$sender->getName()])){
 				$this->tasks[$sender->getName()] = $this->getScheduler()->scheduleRepeatingTask(new ShowDisplayTask($sender, $this->mode, $this->precision), $this->refreshRate);
-				$sender->sendMessage(TextFormat::GREEN . "Coords4PMMP Enabled.");
+				$sender->sendMessage(TextFormat::GREEN . "Coords4PMMP Enabled");
+				$sender->sendMessage(TextFormat::GREEN . "Coords4PMMP was created and maintained by Ashley H, please report any bugs to https://github.com/AshleyHunter01/Coords4PMMP/issues"); 
 			}else{
 				$this->stopDisplay($sender->getName());
-				$sender->sendMessage(TextFormat::RED . "Coords4PMMP Disabled.");
+				$sender->sendMessage(TextFormat::RED . "Coords4PMMP Disabled");
+				$sender->sendMessage(TextFormat::RED . "Coords4PMMP was created and maintained by Ashley H, please report any bugs to https://github.com/AshleyHunter01/Coords4PMMP/issues");
 			}
 
-			return true;
 			return true;
 		}
 
