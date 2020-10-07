@@ -21,28 +21,16 @@ class Coords4PMMP extends PluginBase implements Listener{
 	private $precision = 1;
 
 	public function onEnable() : void{
-	$this->getLogger()->info("Coords4PMMP Has Been Enabled");
-	$this->getLogger()->info("Coords4PMMP was created and maintained by Ashley H, please report any bugs/issues to https://github.com/AshleyHunter01/Coords4PMMP/issues");
-		$this->refreshRate = (int) $this->getConfig()->get("refreshRate");
+	$this->getLogger()->info("Successfully enabled!");
+	$this->getLogger()->info("Was created and maintained by Ashley H, please report any bugs/issues to https://github.com/AshleyHunter01/Coords4PMMP/issues");
 		if($this->refreshRate < 1){
-			$this->getLogger()->warning("Refresh rate property in config.yml is less than 1. Resetting to 1");
-			$this->getConfig()->set("refreshRate", 1);
-			$this->getConfig()->save();
 			$this->refreshRate = 1;
 		}
 
-		$this->mode = $this->getConfig()->get("displayMode", "popup");
-		if($this->mode !== "tip" and $this->mode !== "popup"){
-			$this->getLogger()->warning("Invalid display mode " . $this->mode . ", resetting to `popup`");
-			$this->getConfig()->set("displayMode", "popup");
-			$this->getConfig()->save();
+		if($this->mode !== "popup"){
 			$this->mode = "popup";
 		}
-		$this->precision = (int) $this->getConfig()->get("precision");
 		if($this->precision < 0){
-			$this->getLogger()->warning("Precision property in config.yml is less than 0, using default");
-			$this->getConfig()->set("precision", 1);
-			$this->getConfig()->save();
 			$this->precision = 1;
 		}
 
@@ -50,27 +38,25 @@ class Coords4PMMP extends PluginBase implements Listener{
 	}
 
 	public function onDisable() : void{
-	$this->getLogger()->info("Coords4PMMP Has Been disabled");
-	$this->getLogger()->info("Coords4PMMP was created and maintained by Ashley H, please report any bugs to https://github.com/AshleyHunter01/Coords4PMMP/issues");
+	$this->getLogger()->info("Successfully disabled!");
+	$this->getLogger()->info("Was created and maintained by Ashley H, please report any bugs to https://github.com/AshleyHunter01/Coords4PMMP/issues");
 		$this->tasks = [];
 	}
 
 	public function onCommand(CommandSender $sender, Command $command, string $aliasUsed, array $args) : bool{
 		if($command->getName() === "coords"){
 			if(!($sender instanceof Player)){
-				$sender->sendMessage(TextFormat::RED . "You can only use this command in-game!");
+				$sender->sendMessage("[Coords4PMMP] This command can only be used in-game!");
 
 				return true;
 			}
 
 			if(!isset($this->tasks[$sender->getName()])){
 				$this->tasks[$sender->getName()] = $this->getScheduler()->scheduleRepeatingTask(new ShowDisplayTask($sender, $this->mode, $this->precision), $this->refreshRate);
-				$sender->sendMessage(TextFormat::GREEN . "Coords4PMMP Enabled");
-				$sender->sendMessage(TextFormat::GREEN . "Coords4PMMP was created and maintained by Ashley H, please report any bugs to https://github.com/AshleyHunter01/Coords4PMMP/issues"); 
+				$sender->sendMessage(TextFormat::GREEN . "[Coords4PMMP] Successfully enabled!");
 			}else{
 				$this->stopDisplay($sender->getName());
-				$sender->sendMessage(TextFormat::RED . "Coords4PMMP Disabled");
-				$sender->sendMessage(TextFormat::RED . "Coords4PMMP was created and maintained by Ashley H, please report any bugs to https://github.com/AshleyHunter01/Coords4PMMP/issues");
+				$sender->sendMessage(TextFormat::RED . "[Coords4PMMP] Successfully disabled!");
 			}
 
 			return true;

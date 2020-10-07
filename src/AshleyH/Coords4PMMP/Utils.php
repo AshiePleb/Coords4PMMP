@@ -7,8 +7,6 @@ namespace AshleyH\Coords4PMMP;
 class Utils{
 
 	public static function getCompassDirection(float $deg) : string{
-		//https://github.com/Muirfield/pocketmine-plugins/blob/master/GrabBag/src/aliuly/common/ExpandVars.php
-		//Determine bearing in degrees
 		$deg %= 360;
 		if($deg < 0){
 			$deg += 360;

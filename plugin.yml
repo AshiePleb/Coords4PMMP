@@ -2,7 +2,7 @@ name: Coords4PMMP
 main: AshleyH\Coords4PMMP\Coords4PMMP
 author: Ashley H.
 description: Show player coordinates
-version: 1.0.1
+version: 1.0.2
 api: 3.0.0
 commands:
   coords:

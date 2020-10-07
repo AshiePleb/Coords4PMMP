@@ -1,5 +1,5 @@
 # Coords4PMMP
-Simpe PocketMine-MP plugin that shows player coordinates
+Simple PocketMine-MP plugin that shows player coordinates
 
 ## Installation
 
@@ -19,7 +19,7 @@ Simpe PocketMine-MP plugin that shows player coordinates
 
 ### Copyright and licensing information
 ```
-Coords4PMMP- Simpe PocketMine-MP plugin that shows player coordinates
+Coords4PMMP- Simple PocketMine-MP plugin that shows player coordinates
 Copyright (c) 2020 AshleyHunter01
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
